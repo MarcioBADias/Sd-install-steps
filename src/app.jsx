@@ -15,6 +15,10 @@ const reduce = (state, action) =>
       ...state,
       step: state.step < 1 ? state.step : state.step - 1,
     },
+    set_step_by_index: {
+      ...state,
+      step: action.payload,
+    },
   })[action.type] || state
 
 const Steps = () => {
@@ -36,7 +40,11 @@ const Steps = () => {
     <div className="steps">
       <div className="numbers">
         {state.steps.map((s, i) => (
-          <div key={s.id} className={i === state.step ? 'active' : ''}>
+          <div
+            key={s.id}
+            className={i === state.step ? 'active' : ''}
+            onClick={() => dispatch({ type: 'set_step_by_index', payload: i })}
+          >
             {i + 1}
           </div>
         ))}
