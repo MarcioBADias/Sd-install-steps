@@ -41,6 +41,7 @@ const Steps = () => {
           </div>
         ))}
       </div>
+      <h1 className="title">{state.steps[state.step]?.title}</h1>
       <h2 className="message">
         {state.steps[state.step]?.content?.map((i) => (
           <ul key={i.id}>
@@ -65,7 +66,13 @@ const App = () => {
     <>
       <div className="container-close">
         <button className="close" onClick={handleShowContent}>
-          {showContainer ? 'Fechar' : 'Abrir'}
+          {showContainer ? 'Fechar' : 'Instalar SDPdv'}
+        </button>
+        <button className="close" onClick={handleShowContent}>
+          {showContainer ? 'Fechar' : 'Instalar Servidor'}
+        </button>
+        <button className="close" onClick={handleShowContent}>
+          {showContainer ? 'Fechar' : 'Instalar Retaguarda'}
         </button>
       </div>
       {showContainer && <Steps />}
