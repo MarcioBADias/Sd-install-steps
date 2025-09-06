@@ -113,3 +113,35 @@ h3 {
 .close:hover {
   cursor: pointer;
 }
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  border-bottom: 1px solid var(--link-color-light);
+  padding: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .steps {
+    width: 90%;
+    padding: 20px 15px;
+    margin: 30px auto;
+  }
+
+  .numbers > div {
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .message {
+    font-size: 1rem;
+    margin: 20px 0;
+  }
+}
