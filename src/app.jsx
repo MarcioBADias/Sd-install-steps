@@ -114,25 +114,45 @@ const SuperInstallSteps = () => {
 }
 
 const App = () => {
+  const [buttonsActive, setButtonsActive] = useState(true)
   const [showPdvInstallSteps, setShowPdvInstallSteps] = useState(false)
   const [showSuperInstallSteps, setShowSuperInstallSteps] = useState(false)
   const [showContainer, setShowContainer] = useState(false)
-  const handlePdvInstallContent = () => setShowPdvInstallSteps((s) => !s)
-  const handleSuperInstallContent = () => setShowSuperInstallSteps((s) => !s)
+
+  const handlePdvInstallContent = () => {
+    setShowPdvInstallSteps((s) => !s)
+    setButtonsActive((s) => !s)
+  }
+  const handleSuperInstallContent = () => {
+    setShowSuperInstallSteps((s) => !s)
+    setButtonsActive((s) => !s)
+  }
   const handleShowContent = () => setShowContainer((s) => !s)
+  const handleCloseContent = () => {
+    setShowPdvInstallSteps(false)
+    setShowSuperInstallSteps(false)
+    setShowContainer((s) => !s)
+    setButtonsActive((s) => !s)
+  }
   return (
     <>
-      <div className="container-close">
-        <button className="close" onClick={handlePdvInstallContent}>
-          {showPdvInstallSteps ? 'Fechar' : 'Instalar SDPdv'}
+      {buttonsActive ? (
+        <div className="container-close">
+          <button className="close" onClick={handlePdvInstallContent}>
+            {showPdvInstallSteps ? 'Fechar' : 'Instalar SDPdv'}
+          </button>
+          <button className="close" onClick={handleSuperInstallContent}>
+            {showSuperInstallSteps ? 'Fechar' : 'Instalar Retaguarda'}
+          </button>
+          <button className="close" onClick={handleShowContent}>
+            {showContainer ? 'Fechar' : 'Instalar Servidor'}
+          </button>
+        </div>
+      ) : (
+        <button className="close" onClick={handleCloseContent}>
+          Fechar
         </button>
-        <button className="close" onClick={handleShowContent}>
-          {showContainer ? 'Fechar' : 'Instalar Servidor'}
-        </button>
-        <button className="close" onClick={handleSuperInstallContent}>
-          {showContainer ? 'Fechar' : 'Instalar Retaguarda'}
-        </button>
-      </div>
+      )}
       {showPdvInstallSteps && <PdvInstallSteps />}
       {showSuperInstallSteps && <SuperInstallSteps />}
     </>
